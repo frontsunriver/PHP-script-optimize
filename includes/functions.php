@@ -648,7 +648,7 @@
 															$statement->closeCursor();
 														}
 
-														$statement = $connection->prepare("UPDATE `processed_purchase_orders` SET `is_exported` = 0 WHERE `purchase_order_id` IN (SELECT `purchase_order_id` FROM `sub_line_items` INNER JOIN `line_items` ON `sub_line_items`.`line_item_id` = `line_items`.`line_item_id` WHERE `is_exported` = 0 AND `project_id` = ? and `sub_line_items`.`is_type` = $is_type)");
+														$statement = $connection->prepare("UPDATE `processed_purchase_orders` SET `is_exported` = 1 WHERE `purchase_order_id` IN (SELECT `purchase_order_id` FROM `sub_line_items` INNER JOIN `line_items` ON `sub_line_items`.`line_item_id` = `line_items`.`line_item_id` WHERE `is_exported` = 0 AND `project_id` = ? and `sub_line_items`.`is_type` = $is_type)");
 														$statement->execute([$project_id]);
 														$statement->closeCursor();
 
